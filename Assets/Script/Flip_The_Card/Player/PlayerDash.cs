@@ -13,6 +13,7 @@ public class PlayerDash : MonoBehaviour
     private bool isDashing = false;       // 대시 상태
     private float dashTime = 0f;          // 대시 타이머
     private float cooltimeTime = 0f;      // 쿨타임 타이머
+    private Vector3 dashDirection;        // 대쉬 방향 고정
     private PlayerMovement playerMovement;
     private Rigidbody rb;
 
@@ -40,28 +41,38 @@ public class PlayerDash : MonoBehaviour
 
     void FixedUpdate()
     {
-        // 대시 중이면, 대시 속도를 적용
         if (isDashing)
         {
-            // 대시가 진행 중일 때만 이동
             if (dashTime > 0)
             {
-                rb.MovePosition(rb.position + playerMovement.MoveInput * dashSpeed * Time.fixedDeltaTime);
-                dashTime -= Time.fixedDeltaTime;  // 대시 타이머 감소
+                // 고정된 방향으로 대시
+                rb.MovePosition(rb.position + dashDirection * dashSpeed * Time.fixedDeltaTime);
+                dashTime -= Time.fixedDeltaTime;
             }
             else
             {
-                EndDash();  // 대시 종료
+                EndDash();
             }
         }
     }
-
+    
     // 대시 시작
     void StartDash()
     {
         isDashing = true;
-        dashTime = dashDuration;  // 대시 지속 시간 초기화
-        cooltimeTime = dashCooltime;  // 쿨타임 설정
+
+        // 입력이 있으면 입력 방향, 없으면 현재 보는 방향
+        if (playerMovement.MoveInput.sqrMagnitude > 0.01f)
+        {
+            dashDirection = playerMovement.MoveInput;
+        }
+        else
+        {
+            dashDirection = transform.forward;
+        }
+
+        dashTime = dashDuration;
+        cooltimeTime = dashCooltime;
     }
 
     // 대시 종료

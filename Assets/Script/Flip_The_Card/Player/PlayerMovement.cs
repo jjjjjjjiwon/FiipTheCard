@@ -12,7 +12,7 @@
         void Awake()
         {
             rb = GetComponent<Rigidbody>();
-            
+
             // 카메라 확인
             if (cameraTransform == null)
             cameraTransform = Camera.main.transform;

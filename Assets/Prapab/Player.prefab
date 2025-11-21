@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4400349684392653503}
   - component: {fileID: 2862529024910721387}
   - component: {fileID: 7916211133234426651}
+  - component: {fileID: 2305128779639353436}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -183,3 +184,18 @@ MonoBehaviour:
   dashSpeed: 30
   dashDuration: 0.2
   dashCooltime: 0.1
+--- !u!114 &2305128779639353436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6545838668593833177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6723c1b7ac9a4a74499a17b3521c65d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comboDatas:
+  - {fileID: 11400000, guid: d3676d1bceccef94fb22824913560600, type: 2}
+  - {fileID: 11400000, guid: b93acc5a50adc414fb7683279933578f, type: 2}
