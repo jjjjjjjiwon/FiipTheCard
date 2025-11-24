@@ -4,9 +4,15 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public List<ComboData> comboDatas;
-    
+    public WeaponHitbox weaponHitbox;
+
     private List<KeyCode> currentCombo = new List<KeyCode>();
-    
+
+    void Start()
+    {
+        weaponHitbox = GetComponentInChildren<WeaponHitbox>();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
@@ -44,11 +50,19 @@ public class PlayerCombat : MonoBehaviour
                 }
                 return; // 진행 중
             }
+
+            if (MatchesCombo(comboDatas[i]))
+            {
+                ExecuteAttack();  // 공격 실행 함수 추가
+                                  // ...
+            }
+
         }
         
         // 어떤 콤보도 안 맞음
         Debug.Log("✗ Invalid! - Reset Combo");
         ResetCombo();
+        
     }
     
     bool MatchesCombo(ComboData comboData)
@@ -78,5 +92,11 @@ public class PlayerCombat : MonoBehaviour
     {
         currentCombo.Clear();
         Debug.Log("--- Combo Reset ---");
+    }
+
+    void ExecuteAttack()
+    {
+        weaponHitbox.EnableHit();  // 히트박스 활성화
+                                   // 애니메이션 이벤트를 통해 DisableHit()도 호출
     }
 }
