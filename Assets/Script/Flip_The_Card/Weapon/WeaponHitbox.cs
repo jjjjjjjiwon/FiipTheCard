@@ -10,8 +10,8 @@ public class WeaponHitbox : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+
         if (!hitActive) return;
-        Debug.Log("Trigger Enter: " + other.name);
 
         if (!other.CompareTag("Enemy")) return;
 
@@ -28,8 +28,6 @@ public class WeaponHitbox : MonoBehaviour
     {
         hitActive = true;
         hitEnemies.Clear();
-        Debug.Log("ㅁㅇㅁ나ㅜㄻ누림낭ㅁㄴ암누이ㅏ");
-
     }
 
     public void DisableHit()

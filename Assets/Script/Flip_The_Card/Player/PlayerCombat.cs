@@ -33,36 +33,39 @@ public class PlayerCombat : MonoBehaviour
     {
         currentCombo.Add(key);
         Debug.Log($"Current Combo: {string.Join(" → ", currentCombo)}");
-        
-        // 모든 콤보 체크
-        for (int i = 0; i < comboDatas.Count; i++)
+
+        ComboData matchedCombo = null;
+
+        // 현재 입력이 어느 콤보의 '앞부분'과 일치하는지 체크
+        foreach (var combo in comboDatas)
         {
-            if (MatchesCombo(comboDatas[i]))
+            if (MatchesCombo(combo))
             {
-                Debug.Log($"✓ Valid! Matching: {comboDatas[i].comboName}");
-                
-                // 콤보 완성 체크
-                if (currentCombo.Count == comboDatas[i].comboSequence.Count)
-                {
-                    Debug.Log($">>> COMBO COMPLETE: {comboDatas[i].comboName}");
-                    ExecuteFinisher(comboDatas[i]);
-                    return;
-                }
-                return; // 진행 중
+                matchedCombo = combo;
+                break;
             }
-
-            if (MatchesCombo(comboDatas[i]))
-            {
-                ExecuteAttack();  // 공격 실행 함수 추가
-                                  // ...
-            }
-
         }
-        
-        // 어떤 콤보도 안 맞음
-        Debug.Log("✗ Invalid! - Reset Combo");
-        ResetCombo();
-        
+
+        // 어떤 콤보에도 맞지 않음 → 리셋
+        if (matchedCombo == null)
+        {
+            Debug.Log("✗ Invalid - Reset Combo");
+            ResetCombo();
+            return;
+        }
+
+        Debug.Log($"✓ Valid! Matching: {matchedCombo.comboName}");
+
+        // 콤보 완성인가?
+        if (currentCombo.Count == matchedCombo.comboSequence.Count)
+        {
+            Debug.Log($">>> COMBO COMPLETE: {matchedCombo.comboName}");
+            ExecuteFinisher(matchedCombo);
+            return;
+        }
+
+        // 아직 콤보 진행 중 → 공격 실행
+        ExecuteAttack();
     }
     
     bool MatchesCombo(ComboData comboData)
