@@ -5,7 +5,6 @@ public class PlayerCombat : MonoBehaviour
 {
     public List<ComboData> comboDatas;
     public WeaponHitbox weaponHitbox;
-
     private List<KeyCode> currentCombo = new List<KeyCode>();
 
     void Start()
@@ -102,4 +101,6 @@ public class PlayerCombat : MonoBehaviour
         weaponHitbox.EnableHit();  // 히트박스 활성화
                                    // 애니메이션 이벤트를 통해 DisableHit()도 호출
     }
+
+
 }

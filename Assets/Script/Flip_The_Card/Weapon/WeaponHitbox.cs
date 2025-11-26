@@ -3,23 +3,23 @@ using UnityEngine;
 
 public class WeaponHitbox : MonoBehaviour
 {
-    public Weapon weaponData; // Weapon 정보 연결
-
+    public Weapon weaponData;
+    
     private bool hitActive = false;
-    private List<Collider> hitEnemies = new List<Collider>();
+    private List<Collider> hitTargets = new List<Collider>();
 
     void OnTriggerEnter(Collider other)
     {
-
         if (!hitActive) return;
-
-        if (!other.CompareTag("Enemy")) return;
-
-        if (!hitEnemies.Contains(other))
+        
+        if (hitTargets.Contains(other)) return;
+        
+        // Health 컴포넌트 찾기
+        Health health = other.GetComponent<Health>();
+        if (health != null)
         {
-            hitEnemies.Add(other);
-            // Weapon 데이터를 사용해서 데미지 전달
-            other.GetComponent<EnemyHealth>().TakeDamage(weaponData.damage);
+            hitTargets.Add(other);
+            health.TakeDamage(weaponData.damage);
             Debug.Log($"Hit {other.name} with {weaponData.weaponName} for {weaponData.damage} damage");
         }
     }
@@ -27,7 +27,7 @@ public class WeaponHitbox : MonoBehaviour
     public void EnableHit()
     {
         hitActive = true;
-        hitEnemies.Clear();
+        hitTargets.Clear();
     }
 
     public void DisableHit()

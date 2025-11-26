@@ -6,7 +6,7 @@ public class Test : MonoBehaviour
 {
     public GameObject PBgm;
     private GameObject PVgm;
-    void Start()
+    void Awake()
     {
         PVgm = Instantiate(PBgm);
     }
