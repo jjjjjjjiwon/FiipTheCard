@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     [Header("Target")]
-    public Transform target;  // 플레이어
+    private Transform target;  // 플레이어
     
     [Header("Movement")]
     public float moveSpeed = 5f;
@@ -18,11 +18,8 @@ public class EnemyAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         enemyEntity = GetComponent<EnemyEntity>();
-    }
-    
-    void Start()
-    {
-        // 플레이어 자동으로 찾기
+
+        // 플레이어 찾기
         if (target == null)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -30,23 +27,34 @@ public class EnemyAI : MonoBehaviour
                 target = player.transform;
         }
     }
-    
-    void Update()
+
+    IEnumerator Start()
     {
-        if (target == null) return;
+        // 한 프레임 대기해서 Instantiate된 플레이어가 씬에 들어오도록
+        yield return null;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+            target = player.transform;
+    }
+
+
+    void FixedUpdate()
+    {
+     if (target == null) return;
         
         // 그로기 중이면 추적 안 함
-        if (enemyEntity.Groggy != null && enemyEntity.Groggy.IsGroggy)
-            return;
+        // if (enemyEntity.Groggy != null && enemyEntity.Groggy.IsGroggy)
+        //     return;
         
-        ChasePlayer();
+        ChasePlayer();   
     }
+
     
     void ChasePlayer()
     {
         // 플레이어와의 거리
         float distance = Vector3.Distance(transform.position, target.position);
-        
         // 공격 사거리 밖이면 추적
         if (distance > attackRange)
         {
