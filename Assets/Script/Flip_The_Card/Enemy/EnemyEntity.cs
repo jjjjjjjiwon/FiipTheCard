@@ -14,14 +14,14 @@ public class EnemyEntity : MonoBehaviour
     public Health Health => health;
     public EnemyAI AI => ai;
     public EnemyAttack Attack => attack;
-    public EnemyGroggy Groggy => groggy;
+    //public EnemyGroggy Groggy => groggy;
     
     void Awake()
     {
         health = GetOrAddComponent<Health>();
         ai = GetOrAddComponent<EnemyAI>();
         attack = GetOrAddComponent<EnemyAttack>();
-        groggy = GetOrAddComponent<EnemyGroggy>();
+        //groggy = GetOrAddComponent<EnemyGroggy>();
     }
     
     T GetOrAddComponent<T>() where T : Component

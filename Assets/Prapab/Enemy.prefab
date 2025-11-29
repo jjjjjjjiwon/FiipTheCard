@@ -132,11 +132,9 @@ GameObject:
   - component: {fileID: 9046022559484690440}
   - component: {fileID: 58928377441988549}
   - component: {fileID: 4488152125662713941}
-  - component: {fileID: 3820153378308544809}
-  - component: {fileID: 5757598966059769792}
-  - component: {fileID: 3789567267835287657}
+  - component: {fileID: 533489918651430915}
   m_Layer: 8
-  m_Name: Cube
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,7 +254,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3820153378308544809
+--- !u!114 &533489918651430915
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,36 +263,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6078111165920754608}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2b5649de60fe4b46823b6eaf95f41eb, type: 3}
+  m_Script: {fileID: 11500000, guid: e4a617232eedae64cb124c2ca2822ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  attackRange: 2
---- !u!114 &5757598966059769792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6078111165920754608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c0122c3ad774ba4cb0b6afc966dfed1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
---- !u!114 &3789567267835287657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6078111165920754608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbc79d82790744346a329a5de6d3e216, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackCooldown: 2
-  attackRange: 2
-  weaponHitbox: {fileID: 0}
