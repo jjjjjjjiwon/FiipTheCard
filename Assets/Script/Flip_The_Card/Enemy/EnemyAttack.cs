@@ -37,8 +37,8 @@ public class EnemyAttack : MonoBehaviour
         if (target == null) return;
         
         // 그로기 중이면 공격 안 함
-        // if (enemyEntity.Groggy != null && enemyEntity.Groggy.IsGroggy)
-        //     return;
+        if (enemyEntity.Groggy != null && enemyEntity.Groggy.IsGroggy)    
+        return;
         
         // 쿨타임 감소
         if (attackTimer > 0)

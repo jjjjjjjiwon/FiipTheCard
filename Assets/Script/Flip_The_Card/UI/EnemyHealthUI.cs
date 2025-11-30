@@ -10,12 +10,6 @@ public class EnemyHealthUI : MonoBehaviour
     
     void Start()
     {
-
-    // 디버그 추가
-    Debug.Log($"EnemyHealth: {EnemyHealth}");
-    Debug.Log($"healthSlider: {healthSlider}");
-
-
         // 플레이어 Health 자동으로 찾기
         if (EnemyHealth == null)
         {   
@@ -25,7 +19,7 @@ public class EnemyHealthUI : MonoBehaviour
         }
         
         // Slider 초기화
-        if (healthSlider != null)
+        if (healthSlider != null && EnemyHealth != null)
         {
             healthSlider.maxValue = EnemyHealth.maxHealth;
             Debug.Log($"Current HP: {EnemyHealth.CurrentHealth}");

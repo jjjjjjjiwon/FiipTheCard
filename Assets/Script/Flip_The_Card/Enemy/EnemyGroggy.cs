@@ -4,27 +4,17 @@ using UnityEngine;
 
 public class EnemyGroggy : MonoBehaviour
 {
-    [Header("Groggy Settings")]
-    public float groggyThreshold = 30f;  // 그로기 진입 데미지
-    public float groggyDuration = 5f;    // 그로기 지속 시간 (피니쉬 안 맞으면)
+   [Header("Groggy Settings")]
+    public float groggyDuration = 5f;   // 그로기 지속 시간
+    public float defenseTime = 1f;      // 그로기 방어 시간
     
-    private float accumulatedDamage = 0f;
-    private bool isGroggy = false;
-    private float groggyTimer = 0f;
+    private bool isGroggy = false;      // 그로기 여부
+    private bool isDefense = false;     // 그로기 방어 여부
+    private float groggyTimer = 0f;     // 그로기 시간
     
     public bool IsGroggy => isGroggy;
-    
-    private EnemyEntity enemyEntity;
-    
-    void Awake()
-    {
-        enemyEntity = GetComponent<EnemyEntity>();
-    }
-    
-    void Start()
-    {
-        // Health의 데미지 이벤트 연결 (간단 버전)
-    }
+    public bool IsDefense => isDefense;
+    public float GroggyPercent => groggyTimer / groggyDuration;
     
     void Update()
     {
@@ -32,47 +22,65 @@ public class EnemyGroggy : MonoBehaviour
         {
             groggyTimer -= Time.deltaTime;
             
-            if (groggyTimer <= 0)
+            if (ShouldExitGroggy())
             {
                 ExitGroggy();
             }
         }
     }
-    
-    public void OnTakeDamage(float damage)
+
+    bool ShouldExitGroggy()
     {
-        if (isGroggy) return;  // 그로기 중엔 누적 안 됨
-        
-        accumulatedDamage += damage;
-        Debug.Log($"Boss accumulated damage: {accumulatedDamage}/{groggyThreshold}");
-        
-        if (accumulatedDamage >= groggyThreshold)
-        {
-            EnterGroggy();
-        }
+    // 기본: 타이머 끝남
+    if (groggyTimer <= 0)
+        return true;
+    
+    // 나중에 추가 가능:
+    // if (특수공격맞음) return true;
+    // if (특수조건) return true;
+    return false;
     }
     
-    void EnterGroggy()
+    public void EnterGroggy()
     {
-        isGroggy = true;
-        accumulatedDamage = 0f;
-        groggyTimer = groggyDuration;
+        if (isDefense) return;
+        if (isGroggy) return;
         
+        isGroggy = true;
+        groggyTimer = groggyDuration;
         Debug.Log(">>> BOSS GROGGY!");
     }
     
     public void ExitGroggy()
     {
+        if (!isGroggy) return;
+        
         isGroggy = false;
         groggyTimer = 0f;
+        Debug.Log("Boss Groggy Exit");
         
-        Debug.Log("Boss recovered from groggy");
+        StartDefense();
     }
     
-    // 피니쉬 맞으면 즉시 해제
     public void ExitByFinisher()
     {
-        Debug.Log("Boss groggy ended by finisher!");
+        if (!isGroggy) return;
+        
+        Debug.Log("Boss Groggy Exit by Finisher!");
         ExitGroggy();
     }
+    
+    void StartDefense()
+    {
+        isDefense = true;
+        Debug.Log("Boss Defense Start");
+        Invoke(nameof(EndDefense), defenseTime);
+    }
+    
+    void EndDefense()
+    {
+        isDefense = false;
+        Debug.Log("Boss Defense End");
+    }
+
 }

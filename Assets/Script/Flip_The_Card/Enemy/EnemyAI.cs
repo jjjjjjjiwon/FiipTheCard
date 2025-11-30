@@ -44,8 +44,8 @@ public class EnemyAI : MonoBehaviour
      if (target == null) return;
         
         // 그로기 중이면 추적 안 함
-        // if (enemyEntity.Groggy != null && enemyEntity.Groggy.IsGroggy)
-        //     return;
+        if (enemyEntity.Groggy != null && enemyEntity.Groggy.IsGroggy)
+        return;
         
         ChasePlayer();   
     }
