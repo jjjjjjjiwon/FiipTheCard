@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class EnemyGroggyUI : MonoBehaviour
 {
     [Header("UI")]
-    public Slider GroggySlider;
+    public Slider groggySlider;
     
     [Header("Target")]
     public EnemyGroggy enemyGroggy;
@@ -20,20 +20,27 @@ public class EnemyGroggyUI : MonoBehaviour
         }
         
         // Slider 초기화
-        if (GroggySlider != null && enemyGroggy != null)
+        if (groggySlider != null)
         {
-            GroggySlider.maxValue = enemyGroggy.groggyDuration;
-            Debug.Log($"Grrrrrrogggggy");
-
-            GroggySlider.value = enemyGroggy.GroggyPercent;
+            groggySlider.minValue = 0f;
+            groggySlider.maxValue = 1f;
+            groggySlider.value = 1f;
+            //Debug.Log($"Grrrrrrogggggy");
         }
     }
     
     void Update()
     {
-        if (GroggySlider != null && enemyGroggy != null)
+        if (groggySlider != null && enemyGroggy != null)
         {
-            GroggySlider.value = enemyGroggy.GroggyPercent;
+            if(enemyGroggy.IsGroggy)
+            {
+                groggySlider.value = enemyGroggy.GroggyPercent; // 1 → 0
+            }
+            else
+            {
+                groggySlider.value = 1f;  // ← 그로기 아니면 다시 최대치
+            }
         }
     }
 }

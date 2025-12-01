@@ -48,7 +48,7 @@ public class EnemyGroggy : MonoBehaviour
         
         isGroggy = true;
         groggyTimer = groggyDuration;
-        Debug.Log(">>> BOSS GROGGY!");
+        //Debug.Log(">>> BOSS GROGGY!");
     }
     
     public void ExitGroggy()
@@ -57,7 +57,7 @@ public class EnemyGroggy : MonoBehaviour
         
         isGroggy = false;
         groggyTimer = 0f;
-        Debug.Log("Boss Groggy Exit");
+        //Debug.Log("Boss Groggy Exit");
         
         StartDefense();
     }
@@ -66,21 +66,21 @@ public class EnemyGroggy : MonoBehaviour
     {
         if (!isGroggy) return;
         
-        Debug.Log("Boss Groggy Exit by Finisher!");
+        //Debug.Log("Boss Groggy Exit by Finisher!");
         ExitGroggy();
     }
     
     void StartDefense()
     {
         isDefense = true;
-        Debug.Log("Boss Defense Start");
+        //Debug.Log("Boss Defense Start");
         Invoke(nameof(EndDefense), defenseTime);
     }
     
     void EndDefense()
     {
         isDefense = false;
-        Debug.Log("Boss Defense End");
+        //Debug.Log("Boss Defense End");
     }
 
 }

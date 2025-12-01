@@ -7,6 +7,9 @@ public class PlayerCombat : MonoBehaviour
     public WeaponHitbox weaponHitbox;
     private List<KeyCode> currentCombo = new List<KeyCode>();
 
+    // UI 표시용: 현재 피니셔 스킬
+    private string currentFinisherSkill = null;
+
     void Start()
     {
         weaponHitbox = GetComponentInChildren<WeaponHitbox>();
@@ -84,10 +87,18 @@ public class PlayerCombat : MonoBehaviour
     
     void ExecuteFinisher(ComboData comboData)
     {
+        currentFinisherSkill = comboData.finisherSkill; // 저장
         Debug.Log($">>> Executing Finisher: {comboData.finisherSkill}");
         // 피니쉬 스킬 실행 로직
         
         Invoke(nameof(ResetCombo), 1f);  // 1초 후 리셋
+        Invoke(nameof(ClearFinisherSkill), 1f); // UI용
+    }
+
+    // UI용 필살기 null 하기
+    void ClearFinisherSkill()
+    {
+        currentFinisherSkill = null;
     }
     
     void ResetCombo()
@@ -103,4 +114,21 @@ public class PlayerCombat : MonoBehaviour
     }
 
 
+    public string GetComboDisplay()
+    {
+
+    if(!string.IsNullOrEmpty(currentFinisherSkill))
+    {
+        string temp = currentFinisherSkill; // 임시 저장
+        return temp;
+    }
+
+    if (currentCombo.Count == 0)
+        return "aaaaa";
+    
+    return string.Join(" → ", currentCombo);
+
+    }
+
+    
 }
