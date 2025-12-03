@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a0f73ba6a3e4c84b9bfc7fa77333eb8, type: 3}
-  m_Name: 2Stage
+  m_Script: {fileID: 11500000, guid: ae3066b58023bd947b3d855c96c12072, type: 3}
+  m_Name: New Stage 3
   m_EditorClassIdentifier: 
-  stageName: "2\uBC88"
-  sceneName: Game2
-  thumbnail: {fileID: 0}
-  description: "2\uBC88 \uC2A4\uD14C\uC774\uC9C0"
+  stageID: 3
+  stageName: 3 Stage
+  stageDescription: 3 Stage
+  stageIcon: {fileID: 0}
+  difficulty: 3
+  sceneName: Game 3

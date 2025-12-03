@@ -2,26 +2,18 @@ using UnityEngine;
 
 /// <summary>
 /// 게임 전역 데이터 관리 싱글톤
-/// 씬 전환되어도 유지되며, 현재 층 정보 관리
+/// 씬 전환되어도 유지됨 (DontDestroyOnLoad)
 /// </summary>
 public class GameData : MonoBehaviour
 {
-    #region Singleton
-    
+    /// 싱글톤 인스턴스
     public static GameData Instance { get; private set; }
-    
-    #endregion
-    
-    #region Public Fields
-    
+
     [Header("Current Session")]
     public int currentSeed;           // 현재 세션의 시드 값
     public int currentFloor = 1;      // 현재 층 (1층부터 시작)
-    
-    #endregion
-    
-    #region Unity Lifecycle
-    
+
+    // 싱글톤 설정
     void Awake()
     {
         if (Instance == null)
@@ -36,25 +28,18 @@ public class GameData : MonoBehaviour
         }
     }
     
-    #endregion
-    
-    #region Private Methods
-    
     /// <summary>
     /// 시드 초기화 - 랜덤 시드 생성 (로그라이크 방식)
     /// </summary>
     void InitializeSeed()
     {
         currentSeed = Random.Range(int.MinValue, int.MaxValue);
-        Debug.Log($"생성된 시드: {currentSeed}");
+        Debug.Log($"[GameData] 생성된 시드: {currentSeed}");
     }
-    
-    #endregion
-    
-    #region Public Methods
     
     /// <summary>
     /// 다음 층으로 이동
+    /// Card가 두 번째 클릭될 때 호출됨
     /// </summary>
     public void NextFloor()
     {
@@ -71,6 +56,5 @@ public class GameData : MonoBehaviour
         InitializeSeed();
         Debug.Log("새로운 런 시작!");
     }
-    
-    #endregion
+
 }
