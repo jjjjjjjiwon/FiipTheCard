@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 524066710}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -252,13 +252,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668263162}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1.09, z: -0}
+  m_LocalScale: {x: 1.7878157, y: 1, z: 0.99787}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,6 +445,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1152677459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1152677461}
+  - component: {fileID: 1152677460}
+  m_Layer: 0
+  m_Name: StageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1152677460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152677459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0349896ec459e7645831878bd335a113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardParent: {fileID: 0}
+  cardPrefab: {fileID: 0}
+  spawnedCards: []
+  cardsPerRow: 5
+  xSpacing: 2
+  ySpacing: 3
+--- !u!4 &1152677461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152677459}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1658427461
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,12 +526,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 279924100556272398, guid: c744d2bed6f15c6498be166c6ba92e38, type: 3}
   cardParent: {fileID: 524066711}
-  cardCount: 3
+  cardCount: 15
   cardSpacing: 3
   allStageData:
   - {fileID: 11400000, guid: 134418416d0134d4eae72c15c586544d, type: 2}
   - {fileID: 11400000, guid: 37caa579cf303d04c9d9702f9c2a168f, type: 2}
   - {fileID: 11400000, guid: 4960b9777df475940a695660dd831933, type: 2}
+  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
+  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
+  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
+  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
+  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
+  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
+  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
+  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
+  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
+  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
+  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
+  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
   - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
 --- !u!4 &1658427463
 Transform:
@@ -554,3 +616,4 @@ SceneRoots:
   - {fileID: 2082889389}
   - {fileID: 1658427463}
   - {fileID: 524066711}
+  - {fileID: 1152677461}

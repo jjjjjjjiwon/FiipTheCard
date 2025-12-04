@@ -10,8 +10,9 @@ public class GameData : MonoBehaviour
     public static GameData Instance { get; private set; }
 
     [Header("Current Session")]
-    public int currentSeed;           // 현재 세션의 시드 값
-    public int currentFloor = 1;      // 현재 층 (1층부터 시작)
+    public int currentSeed;           // 현재 세션의 랜덤 시드
+    public int currentFloor = 1;      // 현재 층
+    public int lastSelectedStageID = -1;  // 마지막 선택한 스테이지 ID (초기값 -1)
 
     // 싱글톤 설정
     void Awake()
@@ -45,6 +46,17 @@ public class GameData : MonoBehaviour
     {
         currentFloor++;
         Debug.Log($"다음 층으로: {currentFloor}층");
+    }
+
+    /// <summary>
+    /// 선택한 스테이지 기록
+    /// Card가 선택될 때 호출
+    /// </summary>
+    /// <param name="stageID">선택한 스테이지 ID</param>
+    public void SetLastSelectedStage(int stageID)
+    {
+        lastSelectedStageID = stageID;
+        Debug.Log($"[GameData] 선택한 스테이지 기록: ID {stageID}");
     }
     
     /// <summary>
