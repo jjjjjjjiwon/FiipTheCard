@@ -26,6 +26,7 @@ public class Card : MonoBehaviour
 
     private MeshRenderer cardRenderer;   // 카드 본체 Renderer (Material 변경용)
     private StageData stageData;         // 할당받은 스테이지 데이터
+    private int cardIndex;               // 내가 몇 번째 카드인지 (GameData.selectedStages의 인덱스)
     private bool isSelected = false;     // 첫 번째 클릭 완료 여부
     private bool isFlipped = false;      // 카드가 뒤집혔는지 여부
     private bool canInteract = true;     // 상호작용 가능 여부 (다른 카드 선택 시 false)
@@ -45,27 +46,30 @@ public class Card : MonoBehaviour
     
     
     /// <summary>
-    /// 카드 초기화 - CardManager가 생성 직후 호출
-    /// StageData를 받아서 UI에 세팅
+    /// 카드 초기화
+    /// CardManager가 생성 직후 호출
     /// </summary>
     /// <param name="data">할당할 스테이지 데이터</param>
-    public void Initialize(StageData data)
+    /// <param name="index">이 카드의 인덱스 (GameData.selectedStages의 몇 번째)</param>
+    public void Initialize(StageData data, int index)
     {
         stageData = data;
+        cardIndex = index;  // 인덱스 저장
         SetupFrontSide();
         
-        Debug.Log($"[Card] 초기화: {data.stageName}");
+        Debug.Log($"[Card] 초기화: {data.stageName} (인덱스: {index})");
     }
+
     
     /// <summary>
     /// 상호작용 비활성화
-    /// 다른 카드가 선택되었을 때 CardManager가 호출
+    /// 다른 카드 선택 시 호출
     /// </summary>
     public void DisableInteraction()
     {
         canInteract = false;
         
-        // Material을 기본으로 되돌림
+        // 선택 안하면
         if (normalMaterial != null && cardRenderer != null)
         {
             cardRenderer.material = normalMaterial;
@@ -74,26 +78,25 @@ public class Card : MonoBehaviour
     
     
     /// <summary>
-    /// StageData의 정보를 앞면 UI에 세팅
-    /// 아직 뒷면이라 보이지는 않음
+    /// StageData 정보를 앞면 UI에 세팅
     /// </summary>
     void SetupFrontSide()
     {
         if (stageData == null) return;
         
-        // 스테이지 이미지 설정
+        // 이미지
         if (cardImageRenderer != null && stageData.stageIcon != null)
         {
             cardImageRenderer.material.mainTexture = stageData.stageIcon.texture;
         }
         
-        // 스테이지 이름 설정
+        // 이름
         if (nameText != null)
         {
             nameText.text = stageData.stageName;
         }
         
-        // 스테이지 설명 설정
+        // 설명
         if (descText != null)
         {
             descText.text = stageData.stageDescription;
@@ -101,8 +104,7 @@ public class Card : MonoBehaviour
     }
     
     /// <summary>
-    /// 카드 앞면 표시
-    /// 뒤집기 애니메이션 중간에 호출
+    /// 앞면 표시
     /// </summary>
     void ShowFront()
     {
@@ -111,8 +113,7 @@ public class Card : MonoBehaviour
     }
     
     /// <summary>
-    /// 카드 뒷면 표시
-    /// 초기 상태
+    /// 뒷면 표시
     /// </summary>
     void ShowBack()
     {
@@ -122,19 +123,18 @@ public class Card : MonoBehaviour
     
     /// <summary>
     /// 첫 번째 클릭 처리
-    /// 카드 선택 및 뒤집기
     /// </summary>
     void FirstClick()
     {
         isSelected = true;
         
-        // 뒤집기 애니메이션 시작
+        // 뒤집기
         if (!isFlipped)
         {
             StartCoroutine(FlipCard());
         }
         
-        // CardManager에게 선택 알림
+        // CardManager에 알림
         CardManager cardManager = FindObjectOfType<CardManager>();
         if (cardManager != null)
         {
@@ -146,15 +146,21 @@ public class Card : MonoBehaviour
 
     /// <summary>
     /// 두 번째 클릭 처리
-    /// 스테이지 시작
+    /// 스테이지 시작 및 묘지로 이동
     /// </summary>
     void SecondClick()
     {
         Debug.Log($"[Card] 스테이지 시작: {stageData.stageName}");
-
-        // 다음 층으로 이동
+        
+        // 묘지로 이동 (내 인덱스 전달)
+        if (GameData.Instance != null)
+        {
+            GameData.Instance.MoveToGraveyard(cardIndex);
+        }
+        
+        // 다음 층으로
         GameData.Instance.NextFloor();
-
+        
         // StageManager로 씬 로드
         StageManager stageManager = FindObjectOfType<StageManager>();
         if (stageManager != null)
@@ -167,17 +173,13 @@ public class Card : MonoBehaviour
         }
     }
 
-
     /// <summary>
-    /// 마우스가 카드 위로 올라왔을 때
-    /// Unity의 OnMouseEnter 이벤트
+    /// 마우스 호버 시작
     /// </summary>
     void OnMouseEnter()
     {
-        // 상호작용 불가능하면 무시
         if (!canInteract) return;
         
-        // 강조 Material 적용
         if (highlightMaterial != null && cardRenderer != null)
         {
             cardRenderer.material = highlightMaterial;
@@ -185,15 +187,12 @@ public class Card : MonoBehaviour
     }
     
     /// <summary>
-    /// 마우스가 카드에서 벗어났을 때
-    /// Unity의 OnMouseExit 이벤트
+    /// 마우스 호버 종료
     /// </summary>
     void OnMouseExit()
     {
-        // 상호작용 불가능하면 무시
         if (!canInteract) return;
         
-        // 선택되지 않은 카드만 기본 Material로 복구
         if (!isSelected && normalMaterial != null && cardRenderer != null)
         {
             cardRenderer.material = normalMaterial;
