@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Test : MonoBehaviour
 {
@@ -13,9 +14,10 @@ public class Test : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    // 임시
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Q))
+            SceneManager.LoadScene("Lobby");
     }
 }

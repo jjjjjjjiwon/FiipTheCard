@@ -11,11 +11,11 @@ public class GraveyardUI : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private Button graveyardButton;      // 묘지 버튼
+    [SerializeField] private Button closeButton;          // 닫기 버튼
     [SerializeField] private TextMeshProUGUI buttonText;  // 버튼 텍스트 (개수 표시)
     [SerializeField] private GameObject graveyardPanel;   // 묘지 팝업 패널
     [SerializeField] private Transform contentParent;     // 카드들이 생성될 부모
     [SerializeField] private GameObject cardItemPrefab;   // 묘지 카드 아이템 프리팹
-    [SerializeField] private Button closeButton;          // 닫기 버튼
     
     void Start()
     {
@@ -37,7 +37,8 @@ public class GraveyardUI : MonoBehaviour
         }
         
         // 버튼 텍스트 업데이트
-        UpdateButtonText();
+        // ????? 필요할까 ?????
+        //UpdateButtonText();
     }
     
     /// <summary>
@@ -123,6 +124,17 @@ public class GraveyardUI : MonoBehaviour
             {
                 cardItem.Setup(stage);
             }
+
+
+            RectTransform rt = item.GetComponent<RectTransform>();
+        if (rt != null)
+        {
+            rt.localPosition = Vector3.zero;
+            rt.localRotation = Quaternion.identity;
+            rt.localScale = Vector3.one;
+        }
+
+        
         }
         
         Debug.Log($"[GraveyardUI] {clearedStages.Count}개 카드 표시");

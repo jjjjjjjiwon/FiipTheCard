@@ -29,9 +29,4 @@ public class StageManager : MonoBehaviour
 
     // %%%임시%%%
     // 로비로 돌아가기
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-            SceneManager.LoadScene("Lobby");
-    }
 }

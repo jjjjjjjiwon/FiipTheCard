@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageID: 3
   stageName: 3 Stage
-  stageDescription: 3 Stage
+  stageDescription: 3 Stage Description
   stageIcon: {fileID: 0}
   difficulty: 3
   sceneName: Game 3
