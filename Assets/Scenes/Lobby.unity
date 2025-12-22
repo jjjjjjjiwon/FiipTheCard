@@ -459,6 +459,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 309017626}
   m_CullTransparentMesh: 1
+--- !u!1 &360781208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 360781210}
+  - component: {fileID: 360781209}
+  m_Layer: 0
+  m_Name: StageDataLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &360781209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360781208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e2009fbd780fb242ad7e57f92e51f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &360781210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360781208}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &477058624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,8 +1186,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1152677461}
   - {fileID: 1658427463}
+  - {fileID: 1152677461}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
@@ -1949,23 +1993,6 @@ MonoBehaviour:
   cardParent: {fileID: 524066711}
   cardCount: 15
   cardSpacing: 3
-  allStageData:
-  - {fileID: 11400000, guid: 134418416d0134d4eae72c15c586544d, type: 2}
-  - {fileID: 11400000, guid: 37caa579cf303d04c9d9702f9c2a168f, type: 2}
-  - {fileID: 11400000, guid: 4960b9777df475940a695660dd831933, type: 2}
-  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
-  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
-  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
-  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
-  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
-  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
-  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
-  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
-  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
-  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
-  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
-  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
-  - {fileID: 11400000, guid: fa5b1aaf9841e954498fd76eb8992479, type: 2}
 --- !u!4 &1658427463
 Transform:
   m_ObjectHideFlags: 0
@@ -2256,6 +2283,7 @@ MonoBehaviour:
   currentFloor: 1
   selectedStages: []
   clearedStages: []
+  allStageData: []
 --- !u!4 &2082889389
 Transform:
   m_ObjectHideFlags: 0
@@ -2278,6 +2306,7 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 2082889389}
+  - {fileID: 360781210}
+  - {fileID: 705102406}
   - {fileID: 524066711}
   - {fileID: 865665881}
-  - {fileID: 705102406}
