@@ -142,6 +142,7 @@ public class Card : MonoBehaviour
         }
         
         Debug.Log($"[Card] 선택됨: {stageData.stageName}");
+        transform.localScale = new Vector3(2f, 2f, 2f);
     }
 
     /// <summary>
@@ -171,6 +172,7 @@ public class Card : MonoBehaviour
         {
             Debug.LogError("[Card] StageManager를 찾을 수 없습니다!");
         }
+        
     }
 
     /// <summary>
