@@ -1,9 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// 카드 생성 및 관리
-/// </summary>
 public class CardManager : MonoBehaviour
 {
     [Header("Card Settings")]
@@ -12,19 +10,32 @@ public class CardManager : MonoBehaviour
     [SerializeField] private int cardCount = 3;
     [SerializeField] private float cardSpacing = 3f;
     
-    // [Header("Stage Data Pool")] ← 제거
-    // [SerializeField] private List<StageData> allStageData; ← 제거
-    
     private List<Card> spawnedCards = new List<Card>();
     
     void Start()
     {
-        if (GameData.Instance == null)
+        // 코루틴으로 대기 후 실행
+        StartCoroutine(WaitAndSpawn());
+    }
+    
+    /// <summary>
+    /// StageDataLoader가 로드 완료할 때까지 대기
+    /// </summary>
+    IEnumerator WaitAndSpawn()
+    {
+        // GameData가 없으면 대기
+        while (GameData.Instance == null)
         {
-            Debug.LogError("[CardManager] GameData가 없습니다!");
-            return;
+            yield return null;
         }
         
+        // allStageData가 로드될 때까지 대기
+        while (GameData.Instance.allStageData.Count == 0)
+        {
+            yield return null;
+        }
+        
+        Debug.Log("[CardManager] JSON 로드 완료 확인 - 카드 생성 시작");
         SpawnCards();
     }
     
@@ -36,14 +47,12 @@ public class CardManager : MonoBehaviour
             return;
         }
 
-        // 수정: GameData.allStageData 사용
         if (GameData.Instance.allStageData.Count == 0)
         {
-            Debug.LogError("[CardManager] GameData에 StageData가 없습니다! JSON 로드 확인 필요");
+            Debug.LogError("[CardManager] GameData에 StageData가 없습니다!");
             return;
         }
 
-        // 처음 진입
         if (GameData.Instance.selectedStages.Count == 0)
         {
             InitializeFirstTime();
@@ -51,7 +60,7 @@ public class CardManager : MonoBehaviour
         
         CreateCards();
     }
-    
+        
     void InitializeFirstTime()
     {
         Random.InitState(GameData.Instance.currentSeed);

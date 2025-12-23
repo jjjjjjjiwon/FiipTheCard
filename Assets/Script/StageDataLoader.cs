@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+    using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class StageDataLoader : MonoBehaviour
 {
-    void Awake()
+    void Start()
     {
         LoadStagesFromJSON();
     }

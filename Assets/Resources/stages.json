@@ -2,48 +2,48 @@
   "stages": [
     {
       "stageID": 1,
-      "stageName": "불타는 화산",
-      "stageDescription": "용암이 흐르는 위험한 던전",
+      "stageName": "Burning volcano",
+      "stageDescription": "A dangerous dungeon with flowing lava",
       "iconPath": "StageIcons/volcano",
       "difficulty": 3,
       "sceneName": "Stage_Volcano"
     },
     {
       "stageID": 2,
-      "stageName": "얼어붙은 설원",
-      "stageDescription": "눈보라가 치는 추운 지역",
+      "stageName": "Frozen snowfield",
+      "stageDescription": "A cold area with snowstorms",
       "iconPath": "StageIcons/snowfield",
       "difficulty": 4,
       "sceneName": "Stage_Snowfield"
     },
     {
       "stageID": 3,
-      "stageName": "어두운 동굴",
-      "stageDescription": "빛이 닿지 않는 깊은 동굴",
+      "stageName": "Dark cave",
+      "stageDescription": "A deep cave where no light reaches",
       "iconPath": "StageIcons/cave",
       "difficulty": 2,
       "sceneName": "Stage_Cave"
     },
     {
       "stageID": 4,
-      "stageName": "나무 많은 숲",
-      "stageDescription": "나무가 많다",
+      "stageName": "Forest with many trees",
+      "stageDescription": "There are a lot of trees",
       "iconPath": "StageIcons/forest",
       "difficulty": 1,
       "sceneName": "Stage_Forest"
     },
     {
       "stageID": 5,
-      "stageName": "물이 많은 바다",
-      "stageDescription": "물이 짜다",
+      "stageName": "Watery ocean",
+      "stageDescription": "the water is salty",
       "iconPath": "StageIcons/ocean",
       "difficulty": 4,
       "sceneName": "Stage_Ocean"
     },
     {
       "stageID": 6,
-      "stageName": "더운 사막",
-      "stageDescription": "많이 덮다",
+      "stageName": "Hot desert",
+      "stageDescription": "cover a lot",
       "iconPath": "StageIcons/desert",
       "difficulty": 3,
       "sceneName": "Stage_Desert"
