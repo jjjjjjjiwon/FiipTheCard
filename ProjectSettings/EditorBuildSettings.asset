@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage/Stage_Ocean.unity
     guid: ede48dead79b68e468ba3be5affedeed
+  - enabled: 1
+    path: Assets/Scenes/Main Scene.unity
+    guid: 7b4484b9aa8beaa48a0aba38c7804b53
   m_configObjects: {}
